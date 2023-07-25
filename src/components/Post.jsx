@@ -9,9 +9,9 @@ function Post(props) {
     title,
     description,
     slug,
-    taglist,
+    tagList,
     favoritesCount,
-  } = props.article;
+  } = props;
   return (
     <article className="px-12 py-5 border-t-2">
       <header className="flex justify-between">
@@ -47,7 +47,7 @@ function Post(props) {
         Read More...
       </Link>
       <ul className="flex justify-end">
-        {taglist.map((tag) => (
+        {tagList.map((tag) => (
           <li className="border-2 px-3 rounded-2xl py-1 mx-1" key={tag}>
             {tag}
           </li>
