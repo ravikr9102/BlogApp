@@ -1,19 +1,55 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
+import { articlesURL } from '../utils/constant';
 
-function Post(props) {
-  const {
-    author,
-    createdAt,
-    title,
-    description,
-    slug,
-    tagList,
-    favoritesCount,
-  } = props;
-  return (
-    <article className="px-12 py-5 border-t-2">
+class Post extends React.Component{
+  constructor(props){
+    super(props)
+  }
+
+  // handleFavourite = () => {
+  //   let { favouritesCount, slug } = this.props;
+  //   fetch(articlesURL + "/" + slug + "/favorite", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       authorization: `Token ${this.props.user.token}`,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         throw new Error("Cannot Favourite the article");
+  //       }
+  //       return res.json();
+  //     })
+  //     .then(({ article }) => favouritesCount + 1);
+  //   fetch(articlesURL + "/" + slug + "/favorite", {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       authorization: `Token ${this.props.user.token}`,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         throw new Error("Cannot Favourite the article");
+  //       }
+  //       return res.json();
+  //     })
+  //     .then(({ article }) => favouritesCount - 1);
+  // };
+  render(){
+    const {
+      author,
+      createdAt,
+      title,
+      description,
+      slug,
+      tagList,
+      favoritesCount,
+    } = this.props;
+    return(
+      <article className="px-12 py-5 border-t-2">
       <header className="flex justify-between">
         <div className="flex items-center">
           <img
@@ -54,6 +90,7 @@ function Post(props) {
         ))}
       </ul>
     </article>
-  );
+    )
+  }
 }
 export default Post;
