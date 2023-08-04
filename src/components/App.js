@@ -13,6 +13,7 @@ import Settings from './Settings';
 import Profile from './Profile';
 import EditPost from './EditPost';
 import { withRouter } from '../utils/withRouter';
+import ErrorBoundary from './ErrorBoundary';
 
 class App extends React.Component {
   constructor(props) {
@@ -65,12 +66,12 @@ class App extends React.Component {
       return <FullPageSpinner />;
     }
     return (
-      <React.Fragment>
-        <Header isSignIn={this.state.isSignIn} user={this.state.user} />
+      <ErrorBoundary message="Something went wrong! Please reload the page">
+      <Header isSignIn={this.state.isSignIn} user={this.state.user} />
        {
         this.state.isSignIn ? <AuthenticatedApp user={this.state.user} logout={this.handleLogout} /> : <UnauthenticatedApp updateUser={this.updateUser} user={this.state.user} />
        }
-      </React.Fragment>
+     </ErrorBoundary>
     );
   }
 }
@@ -85,7 +86,7 @@ function AuthenticatedApp(props){
     <Route path='/settings' element={<Settings logout={props.logout} user={props.user}  />} />
     <Route path='/:profile' element={<Profile user={props.user} />} />
     <Route path="*" element={<NoMatch />} />
-  </Routes>
+    </Routes>
   )
 }
 
